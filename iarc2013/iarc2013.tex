@@ -41,7 +41,7 @@
 The Oregon State University Aerial Robotics Team will compete in the 2013
 International Aerial Robotics Competition with a custom quadrotor capable of
 autonomous navigation of a previously unexplored, cluttered indoor environment.
-The quadrotor’s chassis and flight system are optimized for reliable 7-minute
+The quadrotor's chassis and flight system are optimized for reliable 7-minute
 flights. A slimmed-down ASUS Xtion Pro Live provides both a depth map and an
 RGB video feed of the environment for 3D SLAM and object recognition. A custom
 flight control board built around a 32-bit STM32F405 microcontroller allows for
@@ -65,7 +65,7 @@ strong, and simple. The smallest stock carbon tubes, minimalistic aluminum
 center brackets, and lightweight 3D printed motor mounts were integrated in
 order to meet these criteria.
 
-Two 4S 1000 mAh lithium polymer batteries power the quadrotor’s four Turnigy
+Two 4S 1000 mAh lithium polymer batteries power the quadrotor's four Turnigy
 D2830-11 brushless DC motors that spin 8x6 3-blade propellers. A 5V switching
 regulator further powers a custom flight control board and two onboard
 Odroid-X2 mini-PCs clocked at 1.7Ghz. A simple, isolated killswitch mechanism
@@ -94,7 +94,7 @@ protect the quad during testing and demonstrations.
 The first decision when custom designing a multi-rotor is how many rotors to
 have. A three-rotor design was briefly considered for its smaller number of
 motors, but we ultimately decided to continue with a quadrotor since the
-additional weight of a tricopter’s servo counteracts any weight savings and
+additional weight of a tricopter's servo counteracts any weight savings and
 adds a mechanical linkage that may break. In addition, the inherently tilted
 steady state of a tricopter while hovering adds unnecessary complexity to
 vision and control systems that is not present on a quadrotor.
@@ -182,7 +182,7 @@ due to overusage of the 2.4 GHz band in the competition arena. We decided to
 work around this issue by confining all computation to the quadrotor itself,
 with only a 900 MHz downlink for killswitch activation.
 
-The Odroid-X2 is a 4”-square mini-PC built around the Samsung Exynos 4412
+The Odroid-X2 is a 4''-square mini-PC built around the Samsung Exynos 4412
 quad-core ARM Cortex-A9 clocked at 1.7 GHz (Figure~\ref{fig:odroids}). Each
 quadrotor is built with two Odroids onboard, networked via Ethernet for sharing
 computational load. At full load, each Odroid can draw up to 2A at 5V.
@@ -200,7 +200,7 @@ computational load. At full load, each Odroid can draw up to 2A at 5V.
 The Xtion Pro Live (Figure~\ref{fig:xtion}) is much like the more commonly
 known Microsoft Kinect in that it outputs a 30 Hz depth map and a 1280x720 RGB
 video stream (up from the 640x480 video of the Kinect). Unlike the Kinect,
-however, the Xtion Pro is physically slimmer and lighter and lacks the Kinect’s
+however, the Xtion Pro is physically slimmer and lighter and lacks the Kinect's
 heavy motorized base, making it well-suited for use on small, lightweight UAVs.
 It uses the same PrimeSense chip for generating the depth maps, so it functions
 identically to the Kinect where software is concerned.
@@ -283,7 +283,7 @@ software architecture. This allows us to use third-party joystick drivers,
 point cloud libraries, and SLAM algorithms, which frees us from having to
 reimplement solved problems.
 
-In addition, due to ROS’s exclusive use of TCP/UDP network protocols for
+In addition, due to ROS's exclusive use of TCP/UDP network protocols for
 inter-process communication, ROS nodes on the two separate Odroids can
 communicate with each other with no additional software, save for basic network
 configuration.
@@ -319,7 +319,7 @@ octree can easily be cut at any level to obtain a downsampled map of the
 environment.
 
 The Octomap library was made freely available as a ROS package by Hornung and
-his group. We use RGBDSLAM’s implementation of the Octomap library on the two
+his group. We use RGBDSLAM's implementation of the Octomap library on the two
 Odroids onboard the quadrotor and hope to achieve near-realtime performance
 despite limited computational resources.
 
@@ -335,7 +335,7 @@ a Z-height or to project all points to a plane by ignoring the Z-height. This
 
 First, the 2D extracted map is skeletonized via a medial axis morphological
 transformation, which generates a set of points equidistant from at least two
-points on the object’s boundary. This gives us a very rough idea of valid paths
+points on the object's boundary. This gives us a very rough idea of valid paths
 we can follow (Figure~\ref{fig:medial_axis}). We then filter these points be
 their distances from obstacles.
 
@@ -455,7 +455,7 @@ maneuvers feasible.
 
 A restrictive three-dimensional arm was built to safely test and demonstrate
 the quadrotor (Figure~\ref{fig:quad_test_mount}). The arm limits the
-quadrotor’s ability to move. This was developed in response to previous crash
+quadrotor's ability to move. This was developed in response to previous crash
 tests that resulted in hours of wasted time fixing broken hardware.
 
 \begin{figure}[!h]
@@ -503,7 +503,7 @@ year and has led to much of the software design choices.
 Success at the 2013 competition will come with fully autonomous mapping of the
 building and shutdown or egress at the end of flight time.
 
-Next year’s team looks to advance this years progress with the exploration of
+Next year's team looks to advance this years progress with the exploration of
 a more elaborate sensor/vision system.
 
 
