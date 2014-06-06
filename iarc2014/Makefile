@@ -1,4 +1,4 @@
-TARGET=iarc2013
+TARGET=iarc2014
 
 all:
 	pdflatex $(TARGET).tex
