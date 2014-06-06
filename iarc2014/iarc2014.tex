@@ -58,26 +58,23 @@ aboard the ground vehicles..
 Our goal for this year is to accurately track and target ground robots and be
 able to intelligently guide at least one robot to the goal line.
 
-Our 2014 quadrotor, based on our 2013 design, was designed with four criteria in
-mind: lightweight, small, strong, and simple. The smallest stock carbon tubes,
-minimalistic aluminum center brackets, and lightweight 3D printed motor mounts
-were integrated in order to meet these criteria.
+Our 2014 quadrotor, based on our 2013 design, has been designed with four goals
+in mind: lightweight, small, strong, and simple. The smallest stock carbon
+tubes, minimalistic aluminum center brackets, and lightweight 3D printed motor
+mounts have been integrated in order to meet these goals.
 
 Two 4S 1000 mAh lithium polymer batteries power the quadrotor's four Turnigy
-D2830-11 brushless DC motors that spin 8x6 3-blade propellers. A 5V switching
-regulator further powers a custom flight control board and an onboard Odroid-X2
-mini-PC clocked at 1.7Ghz. A simple, isolated killswitch mechanism allows for
-reliable cutoff of motor power in case of malfunction.
+D2830-11 brushless DC motors and 8x6 3-blade propellers. A 5V switching
+regulator powers a custom flight control board (built around the STM32F405
+microcontroller) and an onboard Odroid-X2 mini-PC clocked at 1.7Ghz, which
+perform computer vision tasks and run high-level navigation algorithms.
+A simple, isolated killswitch mechanism allows for reliable cutoff of motor
+power in case of malfunction.
 
-The combination of the Odroid and a custom flight control board built around the
-STM32F405 32-bit microcontroller provide the computing power necessary to
-maintain flight, perform the required computer vision tasks, and run high-level
-navigation algorithms. The camera system will provide a bird's-eye view of the
-playing field to locate ground robots.
-
-The PX4Flow optical flow smart camera will be used to localize the quadrotor in
-the arena. Location data will be fed back to the flight controller, which will
-be responsible for path planning.
+A camera system, which includes the PX4Flow optical flow smart camera, will be
+used to localize the quadrotor in the arena and to provide a bird's-eye view of
+the playing field. Location data will be fed back to the flight controller,
+which will be responsible for path planning.
 
 High-level control algorithms running on the Odroid will send waypoints to the
 flight control board, which will maintain a desired orientation of the quadrotor
@@ -107,66 +104,70 @@ airscrew 8x6 3-blade propellers. This combination provides a maximum thrust of
 over 750g per motor.
 
 Lightweight, small, strong, and simple were the four most important
-requirements set before designing the frame. The arms of the quadrotor uses the
-smallest carbon tubes that could be guaranteed straight by the manufacturer.
-The arms are attached in an X formation wrapped in the center with
-a carbon-aramid weave. Two aluminum rings act as a clamp to provide
-a supporting moment on each arm as well as a mounting plate for the
+requirements set before designing the frame. The arms of the quadrotor use the
+narrowest carbon tubes that could be guaranteed to be straight by the
+manufacturer. The arms are attached in an X formation wrapped in the center
+with a carbon-aramid weave. Two aluminum rings that clamp around the arms
+provide a supporting moment on each arm and serve as a mounting plate for the
 electronics.
 
 Motor mounts designed as plugs to the carbon tubes were optimized for weight
 and strength using finite element analysis (FEA, see
-Figures~\ref{fig:feastress} and \ref{fig:feastrain}). The motor mount design is
-capable of accepting any motors up to 40mm in diameter. The design allows for
-multiple orientations of the motor and propellor, with the chosen configuration
-(Figure~\ref{fig:mmf}) used to minimize torque on the carbon tubes. With the
-first configuration (Figure~\ref{fig:mmi}) the torque caused significant
-vibration issues.  The current configuration decreases vibrations by minimizing
-the moment arm of the propellers to the motor mounts. After testing, it became
-apparent that the weakest point was at the joint with the carbon fiber tube. We
-chose to insert a bolt through the plug to prevent the plastic from cracking.
+Figures~\ref{fig:feastress} and \ref{fig:feastrain}). The motor mounts are
+capable of accepting any motor up to 40mm in diameter. The design allows for
+multiple orientations of the motor and propeller. Care was taken to minimize
+the torque exerted on the carbon tubes by the motor and propeller
+(Figure~\ref{fig:mmf}), as otherwise (Figure~\ref{fig:mmi}) the quad suffered
+from excessive vibration. The current configuration decreases vibrations by
+minimizing the moment arm of the propellers to the motor mounts. Testing
+revealed that the joint with the carbon fiber tube was prone to failure. This
+was remedied with a bolt inserted through the center of the plug.
 
-Safety is paramount when designing an aerial vehicle. An array of materials were
-considered for use on a propeller guard. We decided to use a carbon/Kevlar mesh
-sandwiched around a Divinycell foam core. Divinycell is a foam typically used in
-boat and aerospace cores, and we saw that it carried over well to aerial
-vehicles. The carbon/Kevlar mesh was chosen due to its high strength-to-weight
-ratio and its resilience to deflection.
+For safety, a propeller guard made of a Divinycell foam core sandwiched between
+a carbon-aramid mesh was installed. Divinycell is a foam typically used in boat
+and aerospace applications, which carried over well to aerial vehicles. The
+carbon-aramid mesh was chosen for its high strength-to-weight ratio and
+stiffness.
 
-Our first landing gear design consisted of an outer carbon fiber tube sliding
-over an inner tube, resisted by a spring. The landing gear mount was 3D printed
+Our first landing gear design was a two-stage telescoping carbon fiber tube,
+held under tension by an internal spring. The landing gear mount was 3D printed
 using low strength ABS plastic. We quickly discovered that the plastic mounts
-were too weak and were prone to breaking under rough landings. We revised the
+were too weak and were prone to breaking during rough landings. We revised the
 design with aluminum mounts and verified the strength in simulation. We then
-switched to a second design in which four loops of spring steel are mated to the
-propeller guard. This gives us the damping we wanted without fragile components.
+switched to a second design in which four loops of spring steel are mated to
+the propeller guard. This gave us the damping we wanted without fragile
+components.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.6\textwidth]{img/fea_stress.jpg}
-	\caption{FEA with red indicating high levels of stress. Forces applied perpendicular to flat mount.}
+	\caption{FEA with red indicating high levels of stress. Forces applied
+	perpendicular to flat mount.}
 	\label{fig:feastress}
 \end{figure}
  
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.6\textwidth]{img/fea_strain.jpg}
-	\caption{FEA with red indicating high levels of stress. Forces applied torsionally simulating torques from figure 4.}
+	\caption{FEA with red indicating high levels of stress. Forces applied
+	torsionally simulating torques from Figure~\ref{fig:mmi}.}
 	\label{fig:feastrain}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{img/motor_mount_final.jpg}
-	\caption{Final motor mount configuration. Having the two rotating masses on either side of the mount reduces vibration.}
-	\label{fig:mmf}
+	\includegraphics[width=0.6\textwidth]{img/motor_mount_initial.jpg}
+	\caption{Initial motor mount configuration. The longer moment arm made the
+	mount prone to vibrations.}
+	\label{fig:mmi}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.6\textwidth]{img/motor_mount_initial.jpg}
-	\caption{Initial motor mount configuration. The longer moment arm made the mount prone to vibrations.}
-	\label{fig:mmi}
+	\includegraphics[width=0.5\textwidth]{img/motor_mount_final.jpg}
+	\caption{Final motor mount configuration. Having the two rotating masses on
+	either side of the mount reduces vibration.}
+	\label{fig:mmf}
 \end{figure}
 
 \begin{figure}[!h]
