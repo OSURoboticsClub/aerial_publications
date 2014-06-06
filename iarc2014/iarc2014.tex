@@ -141,8 +141,6 @@ design with aluminum mounts and verified the strength in simulation. We then
 switched to a second design in which four loops of spring steel are mated to the
 propeller guard. This gives us the damping we wanted without fragile components.
 
-% TODO: Add pictures
-
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.6\textwidth]{img/fea_stress.jpg}
@@ -171,6 +169,12 @@ propeller guard. This gives us the damping we wanted without fragile components.
 	\label{fig:mmi}
 \end{figure}
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/prop_guard.jpg}
+	\caption{Propeller guard with landing gear mounted.}
+	\label{fig:feastress}
+\end{figure}
 
 
 \section*{Electronics}
@@ -242,6 +246,13 @@ for basic flight, was scrapped in favor of using the much more powerful
 STM32F405 in order to achieve 1 kHz flight stabilization. Although we do not
 yet take full advantage of this higher control loop frequency, it effects lower
 gyroscopic drift and allows for higher PID gains and tighter control.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{img/flight_control.jpg}
+	\caption{The latest revision of the flight control board.}
+	\label{fig:fcboard}
+\end{figure}
 
 The flight control board controls four ESCs with 400 Hz PWM signals and has
 four SPI connectors available for future use of a custom 1 kHz-capable,
@@ -443,9 +454,9 @@ damage to our quadrotor during testing.
 
 The OSU Autonomous Aerial Robotics Team has constructed an ambitious entry to
 the Mission 7 challenge. With custom flight control breakout board, onboard
-processing for vision and navigation, and a lightweight chassis for longer
-flight time, the quadrotor is a completely autonomous and untethered flying
-machine.
+processing for vision and navigation, a lightweight chassis for longer
+flight time, comprehensive safety features, the quadrotor is a completely
+autonomous and untethered flying machine.
 
 Porting over flight control software to the real time operating system ChibiOS
 allowed us to take advantage of the ARM processor and its capability to
